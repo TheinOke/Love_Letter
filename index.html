@@ -125,11 +125,30 @@ body {
     z-index:5;
     transition-delay:0.3s;
 }
+
+/* PETAL BACKGROUND */
+/* 🌸 Floating Petals */
+.petal{
+    position:absolute;
+    top:-20px;
+    font-size:20px;
+    animation:fall linear forwards;
+    opacity:0.8;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+
 </style>
 </head>
 
 <body>
-
+<div class="petal-container"></div>
 <div id="player"></div>
 
 <div class="envelope-wrapper">
@@ -150,6 +169,21 @@ body {
 </div>
 
 <script>
+
+/* 🌸 Floating Petals Generator */
+function createPetal(){
+    const petal=document.createElement("div");
+    petal.className="petal";
+    petal.innerHTML="🌸";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=5+Math.random()*5+"s";
+    document.body.appendChild(petal);
+
+    setTimeout(()=>petal.remove(),10000);
+}
+setInterval(createPetal,400);
+
+
 
 /* -------------------------
    YOUTUBE API
